@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int distributeTicket(int N, int K) {
+        if (N <= K) {
+            return K;
+        }
+
+        list<int> q;
+        for (int i = 1; i <= N; i++) {
+            q.push_back(i);
+        }
+
+        auto it1 = q.begin();
+        auto it2 = q.end();
+        --it2;
+
+        while (q.size() > K) {
+            // Distribute tickets to the first K people
+            for (int i = 0; i < K; i++) {
+                if (it1 == it2) {
+                    // If there is only one person left, return their ticket number
+                    return *it1;
+                }
+                ++it1;
+            }
+
+            // Distribute tickets to the last K people
+            for (int i = 0; i < K; i++) {
+                if (it1 == it2) {
+                    // If there is only one person left, return their ticket number
+                    return *it1;
+                }
+                --it2;
+            }
+        }
+
+        // Return 0 if no last person found (should not reach this point)
+        return 0;
+    }
+};
+
+  
