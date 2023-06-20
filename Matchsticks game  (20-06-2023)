@@ -1,0 +1,11 @@
+class Solution {
+  public:
+    int matchGame(long long N) {
+    
+      if(N%5==0)  //found a pattern as long as the N is a multiple of 5 A cannot win 
+      {
+          return -1;
+      }
+      else  return N%5;
+    }
+};
