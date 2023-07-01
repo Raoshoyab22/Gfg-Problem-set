@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int setBits(int N) {
+        int count = 0;
+
+        // Iterate through each bit of N
+        while (N > 0) {
+            // If the rightmost bit is set (equal to 1), increment the count
+            if (N & 1) {
+                count++;
+            }
+            // Right shift N by 1 to check the next bit
+            N = N >> 1;
+        }
+
+        return count;
+    }
+};
+
+/*The function takes the positive integer N as input and initializes the count to 0. It then iterates through each bit of N using a while loop. 
+In each iteration, it checks if the rightmost bit is set (equal to 1) using the bitwise AND operation N & 1. If it is, the count is incremented. 
+Finally, it right shifts N by 1 to check the next bit. The loop continues until all bits of N have been checked.
+This solution has a time complexity of O(log N) and uses constant auxiliary space O(1), 
+as it only requires a fixed amount of memory to store the count variable.*/
+
+
+
+
+
+
