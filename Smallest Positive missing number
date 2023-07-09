@@ -1,0 +1,30 @@
+class Solution
+{
+    public:
+    //Function to find the smallest positive number missing from the array.
+    int missingNumber(int arr[], int n) 
+    { 
+       // Declare the smallest positive missing number as 1
+    int smallest_missing_number = 1;
+
+    //Create a set to store the smallest positive missing numbers
+    set<int> smallest_missing_numbers;
+
+    //Traverse the array
+    for (int i = 0; i < n; i++) {
+        //If the current element is positive and not already present in the set, then add it to the set
+        if (arr[i] > 0 && smallest_missing_numbers.find(arr[i]) == smallest_missing_numbers.end()) {
+            smallest_missing_numbers.insert(arr[i]);
+        }
+    }
+
+    // Return the smallest positive missing number
+    for (int i = smallest_missing_number; i <= n; i++) {
+        if (smallest_missing_numbers.find(i) == smallest_missing_numbers.end()) {
+            return i;
+        }
+    }
+
+    return n + 1;
+    } 
+};
