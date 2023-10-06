@@ -1,0 +1,33 @@
+void rearrange(struct Node* odd) {
+    if (odd->next == NULL) {
+        // If there is only one node or the list is empty, nothing to rearrange
+        return;
+    }
+    
+    Node* od = odd;   // Initialize a pointer to the current node
+    Node* pr = NULL;  // Initialize a pointer to the previous node
+    Node* r, *p, *nxt;  // Initialize temporary pointers
+
+    // Traverse the list in pairs, reversing each pair
+    while (od != NULL && od->next != NULL) {
+        // Store the next-next node (two nodes ahead)
+        nxt = od->next->next;
+        
+        // Reverse the current pair of nodes
+        r = od->next;   // 'r' points to the second node in the pair
+        r->next = pr;   // Reverse the 'next' pointer of 'r' to point to 'pr'
+        pr = r;         // Move 'pr' to the current 'r' node
+        p = od;         // 'p' points to the first node in the pair
+        od->next = nxt; // Update the 'next' pointer of 'p' to point to the next pair
+        od = od->next;  // Move 'od' to the next pair's first node
+    }
+    
+    if (!od) {
+        // If the list has an odd number of nodes, 'od' will be NULL at the end
+        // Set 'od' to 'p' (the last node of the original list)
+        od = p;
+    }
+
+    // Connect the last node of the modified list to the reversed pairs
+    od->next = r;
+}
